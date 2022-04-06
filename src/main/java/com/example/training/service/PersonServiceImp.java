@@ -14,25 +14,25 @@ public class PersonServiceImp implements IPersonService {
     private IPersonDAO personDAO;
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<Person> getPersons() {
         return (List<Person>) personDAO.findAll();
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     public void createPerson(Person person) {
         personDAO.save(person);
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     public void deletePerson(Person person) {
         personDAO.delete(person);
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Person getPerson(Person person) {
         return personDAO.findById(person.getId_person()).orElse(null);
     }

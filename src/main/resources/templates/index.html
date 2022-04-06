@@ -2,13 +2,25 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        .form-control:focus {
+            box-shadow: inset 0 0 0 0.25rem rgb(13 110 253 / 25%);
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1 class=" my-3 text-center">List of persons</h1>
+        <h1 class=" my-3 text-center">Employees</h1>
         <div class="row">
+            <div class="col-12">
+                <div class="btn-group mb-3" role="group">
+                    <button type="button" class="btn btn-sm btn-success"><a th:href="@{/add}" class="text-decoration-none text-light"><i class="fas fa-user-plus"></i><span class="mx-2">New</span></a></button>
+                </div>
+            </div>
             <div class="col-12" th:if="${persons != null && !persons.empty}">
                 <table class="table table-striped table-hover table-bordered">
                     <thead>
@@ -17,6 +29,7 @@
                         <th>Lastname</th>
                         <th>Email</th>
                         <th>Phone</th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -25,6 +38,16 @@
                         <td th:text="${person.lastname}"></td>
                         <td th:text="${person.email}"></td>
                         <td th:text="${person.phone}"></td>
+                        <td>
+                            <div class="d-flex align-items-center justify-content-evenly">
+                                <a th:href="@{/edit/}+${person.id_person}" title="Edit">
+                                    <i class="fas fa-user-edit text-primary"></i>
+                                </a>
+                                <a th:href="@{/delete(id_person=${person.id_person})}" title="Delete">
+                                    <i class="fas fa-trash-alt text-danger"></i>
+                                </a>
+                            </div>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
