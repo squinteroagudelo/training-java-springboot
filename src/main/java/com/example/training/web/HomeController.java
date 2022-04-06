@@ -1,6 +1,7 @@
 package com.example.training.web;
 
 import com.example.training.dao.IPersonDAO;
+import com.example.training.service.PersonServiceImp;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,14 +14,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
     @Autowired
-    private IPersonDAO personDAO;
+    private PersonServiceImp personService;
 
     /*@Value("${index.regards}")
     private String regards;*/
 
     @GetMapping("/")
     public String home(Model model){
-        var persons = personDAO.findAll();
+        var persons = personService.getPersons();
 //        log.info("Run HomeController"); // RestController
 //        return "Hello from Home"; // RestController
 //        log.debug("More details about HomeController");
