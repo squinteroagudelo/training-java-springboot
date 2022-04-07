@@ -1,14 +1,16 @@
 package com.example.training.web;
 
-import com.example.training.dao.IPersonDAO;
 import com.example.training.domain.Person;
 import com.example.training.service.PersonServiceImp;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.validation.Valid;
 
 //@RestController
 @Controller
@@ -37,7 +39,9 @@ public class HomeController {
     }
 
     @PostMapping("/create")
-    public String create(Person person){
+    public String create(@Valid Person person, Errors errors){
+        if (errors.hasErrors())
+            return "save";
         personService.createPerson(person);
         return "redirect:/";
     }
