@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title th:text="#{home.title-page}"></title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
@@ -13,23 +13,24 @@
     </style>
 </head>
 <body>
+    <div th:replace="common/template :: language-bar"></div>
     <div class="container">
-        <h1 class=" my-3 text-center">Employees</h1>
+        <h1 class=" my-3 text-center"  th:text="#{home.title}">Employees</h1>
         <div class="row">
             <div class="col-12">
                 <div class="btn-group mb-3" role="group">
-                    <button type="button" class="btn btn-sm btn-success"><a th:href="@{/add}" class="text-decoration-none text-light"><i class="fas fa-user-plus"></i><span class="mx-2">New</span></a></button>
+                    <button type="button" class="btn btn-sm btn-success"><a th:href="@{/add}" class="text-decoration-none text-light"><i class="fas fa-user-plus"></i><span class="mx-2" th:text="#{home.new}"></span></a></button>
                 </div>
             </div>
             <div class="col-12" th:if="${persons != null && !persons.empty}">
                 <table class="table table-bordered table-hover table-sm table-striped">
                     <thead>
                     <tr class="bg-secondary text-center text-light">
-                        <th>Name</th>
-                        <th>Lastname</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Actions</th>
+                        <th th:text="#{label-name}"></th>
+                        <th th:text="#{label-lastname}"></th>
+                        <th th:text="#{label-email}"></th>
+                        <th th:text="#{label-phone}"></th>
+                        <th th:text="#{home.th-actions}"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -40,10 +41,10 @@
                         <td th:text="${person.phone}"></td>
                         <td>
                             <div class="d-flex align-items-center justify-content-evenly">
-                                <a th:href="@{/edit/}+${person.id_person}" title="Edit">
+                                <a th:href="@{/edit/}+${person.id_person}" th:title="#{home.td-actions-icon-edit}">
                                     <i class="fas fa-user-edit text-primary"></i>
                                 </a>
-                                <a th:href="@{/delete(id_person=${person.id_person})}" title="Delete">
+                                <a th:href="@{/delete(id_person=${person.id_person})}" th:title="#{home.td-actions-icon-delete}">
                                     <i class="fas fa-trash-alt text-danger"></i>
                                 </a>
                             </div>
@@ -53,7 +54,7 @@
                 </table>
             </div>
             <div class="col-12" th:if="${persons == null || persons.empty}">
-                <p class="alert alert-danger text-center">List of persons is empty</p>
+                <p class="alert alert-danger text-center" th:text="#{no-person}"></p>
             </div>
         </div>
     </div>

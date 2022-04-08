@@ -19,14 +19,14 @@ public class Person implements Serializable {
     @Column(name = "id_person", nullable = false)
     private Long id_person;
 
-    @NotEmpty(message="Name is required")
+    @NotEmpty
     private String name;
 
-    @NotEmpty(message="Lastname is required")
+    @NotEmpty
     private String lastname;
 
-    @NotEmpty(message="Email is required")
-    @Email(message="Invalid email format")
+    @NotEmpty
+    @Email
     private String email;
 
 //    @NotEmpty(message="Phone is required")
