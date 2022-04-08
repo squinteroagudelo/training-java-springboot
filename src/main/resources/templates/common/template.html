@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Template</title>
@@ -7,17 +7,18 @@
 <body>
     <div class="col-12 d-flex justify-content-between pe-1 position-absolute end-0 top-0" th:fragment="language-bar">
         <div class="d-flex align-items-center ps-1" th:fragment="language-bar">
+            <i class="fa-language fas fs-2 px-2 text-black-50"></i>
             <div class="d-flex align-items-center">
                 <a th:href="@{/(lang=es)}" th:title="#{template.icon-es}" role="button">ES</a>
                 <span class="mx-1">|</span>
                 <a th:href="@{/(lang=en)}" th:title="#{template.icon-en}" role="button">EN</a>
             </div>
-            <i class="fa-language fas fs-2 px-2 text-black-50"></i>
         </div>
 
         <div th:fragment="logout">
             <form method="POST" th:action="@{/logout}">
-                <button type="submit" class="btn btn-sm p-0">
+                <button type="submit" class="btn btn-sm d-flex align-items-center p-0">
+                    <span class="fs-6 me-1" sec:authentication="name"></span>
                     <i class="fa-sign-out-alt fas fs-3" th:title="#{template.icon-logout}" style="color: navy;"
                        role="button"></i>
                 </button>

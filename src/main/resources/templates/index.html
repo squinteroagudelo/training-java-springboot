@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +17,7 @@
     <div class="container">
         <h1 class=" my-3 text-center"  th:text="#{home.title}">Employees</h1>
         <div class="row">
-            <div class="col-12">
+            <div sec:authorize="hasRole('ROLE_ADMIN')" class="col-12">
                 <div class="btn-group mb-3" role="group">
                     <button type="button" class="btn btn-sm btn-success"><a th:href="@{/add}" class="text-decoration-none text-light"><i class="fas fa-user-plus"></i><span class="mx-2" th:text="#{home.new}"></span></a></button>
                 </div>
@@ -30,7 +30,7 @@
                         <th th:text="#{label-lastname}"></th>
                         <th th:text="#{label-email}"></th>
                         <th th:text="#{label-phone}"></th>
-                        <th th:text="#{home.th-actions}"></th>
+                        <th sec:authorize="hasRole('ROLE_ADMIN')" th:text="#{home.th-actions}"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -39,7 +39,7 @@
                         <td th:text="${person.lastname}"></td>
                         <td th:text="${person.email}"></td>
                         <td th:text="${person.phone}"></td>
-                        <td>
+                        <td sec:authorize="hasRole('ROLE_ADMIN')">
                             <div class="d-flex align-items-center justify-content-evenly">
                                 <a th:href="@{/edit/}+${person.id_person}" th:title="#{home.td-actions-icon-edit}">
                                     <i class="fas fa-user-edit text-primary"></i>
