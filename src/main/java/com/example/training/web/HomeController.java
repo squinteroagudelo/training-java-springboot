@@ -1,7 +1,7 @@
 package com.example.training.web;
 
 import com.example.training.domain.Person;
-import com.example.training.service.PersonServiceImp;
+import com.example.training.service.IPersonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -20,7 +20,7 @@ import javax.validation.Valid;
 public class HomeController {
 
     @Autowired
-    private PersonServiceImp personService;
+    private IPersonService personService;
 
     /*@Value("${index.regards}")
     private String regards;*/

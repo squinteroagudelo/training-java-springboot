@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Data
 @Table(name = "user")
-public class User implements Serializable {
+public class UserDomain implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
