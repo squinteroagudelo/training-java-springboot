@@ -14,7 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
+    /*@Autowired
     private UserDetailsService userDetailsService;
 
     @Bean
@@ -25,9 +25,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception {
         build.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    }
+    }*/
 
-    /*@Override
+    @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
                 .withUser("admin")
@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("user")
                     .password("{noop}123")
                     .roles("USER");
-    }*/
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
